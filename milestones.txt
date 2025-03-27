@@ -1,0 +1,5 @@
+Tasks:
+Jeffrey - Research GUI to use on the program
+Davyn - Write function to generate starting game board in chess and set up class definitions for pieces
+Siddh - Write function to decide moves
+Sergio - Manage the game loop
