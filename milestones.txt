@@ -3,3 +3,6 @@ Jeffrey - Research GUI to use on the program
 Davyn - Write function to generate starting game board in chess and set up class definitions for pieces
 Siddh - Write function to decide moves
 Sergio - Manage the game loop
+
+Things to have done by Monday, 3/31:
+Be able to generate a starting board and make a move
