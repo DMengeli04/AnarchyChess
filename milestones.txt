@@ -6,3 +6,11 @@ Sergio - Manage the game loop
 
 Things to have done by Monday, 3/31:
 Be able to generate a starting board and make a move
+
+
+Davyn's Rubric:
+spent 4+ hours on challenge - 12 pts
+code compiles and works properly - 16 pts
+Task finished by the deadline - 12 pts
+
+
