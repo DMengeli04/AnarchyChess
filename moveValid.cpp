@@ -1,5 +1,5 @@
 
-//Siddh Patel's implementation for making valid moves on the chess while mainting game loop.
+//Siddh Patel's implementation for making valid moves on the chess while maintaing game loop.
 
 /*IMPORTANT NOTE FOR COMPILATION: I included Davyn's cpp file here and commented out his main function in order to make my code compile!*/
 
