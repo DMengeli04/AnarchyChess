@@ -4,7 +4,7 @@
 /*IMPORTANT NOTE FOR COMPILATION: I included Davyn's cpp file here and commented out his main function in order to make my code compile!*/
 
 /*
-Important things to not about this code. I am listing the things I did not consider while writing this code as it would get too
+Important things to note about this code. I am listing the things I did not consider while writing this code as it would get too
 complicated and time consuming. It might not be able to do things I haven't listed here but here are gist of it.
 It is unable to: 
 -Check for the check and checkmate conditions.
