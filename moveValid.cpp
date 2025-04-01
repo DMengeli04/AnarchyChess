@@ -3,6 +3,9 @@
 
 /*IMPORTANT NOTE FOR COMPILATION: I included Davyn's cpp file here and commented out his main function in order to make my code compile!*/
 
+/*Credits: I got help from copilot for printBoard function and also my brother-in-law (who is a software engineer) helped me fix my isValid and 
+moveMaker function as I was getting a logic error such as pieces not being shown which were moved, etc.*/
+
 /*
 Important things to note about this code. I am listing the things I did not consider while writing this code as it would get too
 complicated and time consuming. It might not be able to do things I haven't listed here but here are gist of it.
