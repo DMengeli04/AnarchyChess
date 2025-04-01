@@ -6,9 +6,3 @@ Sergio - Manage the game loop
 
 Things to have done by Monday, 3/31:
 Be able to generate a starting board and make a move
-
-Rubric: Jeffrey
-  30 points: Code performs all expected functions; Eg runs a intuitive GUI for the chess game
-  5 points: Efficiency; doesn't take a million years
-  5 points: Readable; other people can make sense of my comments
-  2 points(bonus): Implement anarchy functionality.
