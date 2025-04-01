@@ -178,7 +178,7 @@ void chessPlayer::gamePlayLoop() {
                 }
     
                 if (isValid(chessNotationToIndex(from), chessNotationToIndex(to))) {
-                        makeMove(chessNotationToIndex(from),chessNotationToIndex(to));
+                        moveMaker(chessNotationToIndex(from),chessNotationToIndex(to));
                         cout << "Congrats! Your move was successfully made.\n";
                 } else {
                         cout << "Invalid move! Please try again!\n";
