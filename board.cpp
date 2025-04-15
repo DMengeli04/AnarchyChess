@@ -45,12 +45,12 @@ vector<Piece *> generate_board() {
   // kings
   knight->letter = 'h';
   // L-shaped jumps
-  knight->moves = {-7, -14, -21, -28, -35, -42, -49, -9, -18, -27, -36, -45, -54, -63, 7, 14, 
-    21, 28, 35, 42, 49, 9, 18, 27, 36, 45, 54, 63};
+  knight->moves = {-17, -15, -10, -6, 6, 10, 15, 17};
 
   bishop->letter = 'b';
   // diagonal moves
-  bishop->moves = {-7, -9, 9, 7};
+  bishop->moves = {-7, -14, -21, -28, -35, -42, -49, -9, -18, -27, -36, -45, -54, -63, 7, 14, 
+    21, 28, 35, 42, 49, 9, 18, 27, 36, 45, 54, 63};
 
   rook->letter = 'r';
   // vertical and horizontal moves
