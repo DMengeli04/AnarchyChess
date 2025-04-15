@@ -124,24 +124,6 @@ vector<Piece *> generate_board() {
 
   // testing prints
 
-  for (size_t i = 0; i < board.size(); i++) {
-    if ((i % 8) == 0) {
-      cout << endl;
-    }
-    cout << board[i]->letter;
-  }
-
-  cout << endl;
-
-  for (size_t j = 0; j < color_board.size(); j++) {
-    if ((j % 8) == 0) {
-      cout << endl;
-    }
-    cout << color_board[j];
-  }
-
-  cout << endl;
-
   return board;
 }
 
