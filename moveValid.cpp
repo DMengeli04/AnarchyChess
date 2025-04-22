@@ -89,7 +89,7 @@ bool chessPlayer::isValid(int from, int to) {
         }
 
 
-	if (board[from]->letter == 'p' && board[from]->move_count > 0 && to == -16) {
+	if (board[from]->letter == 'p' && board[from]->move_count > 0 && ((to == -16) || to == 16))) {
 		return false;
 	}
 
