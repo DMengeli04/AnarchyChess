@@ -12,7 +12,7 @@ public:
     char letter;
     std::vector<int> moves;
     int move_count;
-    Piece Piece::operator=(const Piece& p) {
+    Piece operator=(const Piece& p) {
         if (this != &p) {
             letter = p.letter;
             moves = p.moves;
