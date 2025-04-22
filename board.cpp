@@ -13,6 +13,7 @@ public:
   // index,
   char letter;
   vector<int> moves;
+  int move_count;
 };
 
 vector<Piece *> generate_board() {
@@ -35,37 +36,44 @@ vector<Piece *> generate_board() {
   white_pawn->letter = 'p';
   // forward move, double move on first, diagonal captures
   white_pawn->moves = {-8, -16, -9, -7};
+  white_pawn->move_count = 0;
 
   black_pawn->letter = 'p';
   // forward move, double move on first, diagonal captures
   // reversed because of board position
   black_pawn->moves = {8, 16, 9, 7};
+  black_pawn->move_count = 0;
 
   // letter has been turned into 'h' for "horse" so as not to interfere with
   // kings
   knight->letter = 'h';
   // L-shaped jumps
   knight->moves = {-17, -15, -10, -6, 6, 10, 15, 17};
+  knight->move_count = 0;
 
   bishop->letter = 'b';
   // diagonal moves
   bishop->moves = {-7, -14, -21, -28, -35, -42, -49, -9, -18, -27, -36, -45, -54, -63, 7, 14, 
     21, 28, 35, 42, 49, 9, 18, 27, 36, 45, 54, 63};
+  bishop->move_count = 0;
 
   rook->letter = 'r';
   // vertical and horizontal moves
   rook->moves = {-8, -16, -24, -32, -40, -48, -56, 8, 16, 24, 32, 40, 48, 
     56, -1, -2, -3, -4, -5, -6, -7, 1, 2, 3, 4, 5, 6, 7};
+  rook->move_count = 0;
 
   queen->letter = 'q';
   // combination of lines and diagonals
   queen->moves = {-7, -14, -21, -28, -35, -42, -49, -9, -18, -27, -36, -45, -54, -63, 7, 14, 
     21, 28, 35, 42, 49, 9, 18, 27, 36, 45, 54, 63,-8, -16, -24, -32, -40, -48, -56, 8, 16, 
     24, 32, 40, 48, 56, -1, -2, -3, -4, -5, -6, -7, 1, 2, 3, 4, 5, 6, 7 };
+  queen->move_count = 0;
 
   king->letter = 'k';
   // same as queen's but only one at a time
   king->moves = {1, -1, 8, -8, 7, -7, 9, -9};
+  king->move_count = 0;
 
   // if space is empty
   empty->letter = '_';
