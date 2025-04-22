@@ -88,6 +88,12 @@ bool chessPlayer::isValid(int from, int to) {
                  return false;
         }
 
+
+	if (board[from]->letter == 'p' && board[from]->move_count == 1) {
+		return false;
+	}
+
+
 	//If its white's turn and if the piece is not white, then return false
         if (white && colors[from] != 'w'){
                 return false;
