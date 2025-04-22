@@ -157,7 +157,7 @@ void chessPlayer::printBoard() {
         for (int i = 0; i < 8; i++) {
                 cout << 8-i << " ";  //This shows the letts 1 to 8 on the left side of the board.
                 for (int j = 0; j < 8; j++) {
-                        char piece = board[i*8 + j]->letter;
+                        char piece = board[i*8 + j].letter;
 
                         //Printing while tracking the colors.
                         if (colors[i*8 + j] == 'b') 
