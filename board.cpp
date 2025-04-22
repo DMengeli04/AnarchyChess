@@ -138,10 +138,3 @@ vector<Piece *> generate_board() {
 
   return board;
 }
-
-int main() {
-  // try printing the board and see if it works
-  generate_board();
-
-  return 0;
-}
