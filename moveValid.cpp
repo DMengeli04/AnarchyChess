@@ -120,6 +120,7 @@ void chessPlayer::moveMaker(int from, int to) {
         // This places the piece from initial position to destination.
         //An example would be making the pawn move from e2 to e4.
         board[to] = board[from];
+	board[to]->move_count++;
 
         //This segment is to ensure that the original position of the piece which was moved is empty.
         //An example would be when we move e2 to e4, this segment ensures that the  place e2 is empty now.
