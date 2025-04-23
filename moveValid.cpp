@@ -92,20 +92,20 @@ bool chessPlayer::isValid(int from, int to) {
         return false;
     }
 	
-// pawns can't move diagonally unless they're capturing
-  if (board[from].letter == 'p' &&
+    // pawns can't move diagonally unless they're capturing
+    if (board[from].letter == 'p' &&
       (to == from + 9 || to == from - 9 || to == from + 7 || to == from - 7) &&
       board[to].letter == '_') {
-    return false;
-  }
+       return false;
+    }
 
-  // pawns can't capture on a forward move
-  if (board[from].letter == 'p' &&
+   // pawns can't capture on a forward move
+   if (board[from].letter == 'p' &&
       (to == from + 8 || to == from - 8 || to == from + 16 ||
        to == from - 16) &&
-      board[to].letter != '_') {
-    return false;
-  }
+       board[to].letter != '_') {
+       return false;
+    }
 
     //If its white's turn and if the piece is not white, then return false
     if (white && colors[from] != 'w') {
