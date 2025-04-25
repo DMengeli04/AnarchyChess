@@ -12,8 +12,6 @@ complicated and time consuming. It might not be able to do things I haven't list
 It is unable to: 
 -Check for the check and checkmate conditions.
 -Check for special move conditions like Pawn promotion or Castling.
--Make sure the diagonal and side moving pieces like Bishop,Rook, Queen  don't jump over existing pieces.
--Sliding/Diagnoal pieces like Bishop or Queen pieces can move to more than one square. For example f1 to d3. 
 */
 
 #include <iostream>
@@ -30,6 +28,7 @@ public:
     int chessNotationToIndex(std::string position);
     bool isValid(int from, int to);
     void moveMaker(int from, int to);
+    bool findPath(int from, int to);
     void printBoard();
     void gamePlayLoop();
 };
@@ -122,6 +121,10 @@ bool chessPlayer::isValid(int from, int to) {
         return false;
     }
 
+    if (!(findPath(from, to))) {
+        return false;
+    }
+
     //This calculates the difference between destination and initial position. If the result is not in any of the vector for moves
         //from davyn's code, then it is not a valid move.
     int diff = to - from;
@@ -204,6 +207,98 @@ void chessPlayer::gamePlayLoop() {
                         cout << "Invalid move! Please try again!\n";
                 }
         }
+}
+
+//Determines if there is a path between to coordinates
+bool chessPlayer::findPath(int from, int to) {
+    int diff = to - from;
+    // West, NorthWest, North, NorthEast
+    if (diff < 0) {
+        //NorthEast
+        if (diff % 7 == 0) {
+        from -= 7;
+        while (from > to) {
+            if (board[from].letter != '_') {
+                return false;
+            }
+            from -= 7;
+        }
+    }
+        //North
+        else if (diff % 8 == 0) {
+            from -= 8;
+            while (from > to) {
+                if (board[from].letter != '_') {
+                    return false;
+                }
+                from -= 8;
+            }
+        }
+        //NorthWest
+        else if (diff % 9 == 0) {
+            from -= 9;
+            while (from > to) {
+                if (board[from].letter != '_') {
+                    return false;
+                }
+                from -= 9;
+            }
+        }
+        //West
+        else if (diff > -8) {
+            from--;
+            while (from > to) {
+                if (board[from].letter != '_') {
+                    return false;
+                }
+                from--;
+            }
+        }
+    }
+    // East, SouthEast, South, SouthWest
+    else {
+        //SouthWest
+        if (diff % 7 == 0) {
+            from += 7;
+            while (from < to) {
+                if (board[from].letter != '_') {
+                    return false;
+                }
+                from += 7;
+            }
+        }
+        //South
+        else if (diff % 8 == 0) {
+            from += 8;
+            while (from < to) {
+                if (board[from].letter != '_') {
+                    return false;
+                }
+                from += 8;
+            }
+        }
+        //SouthEast
+        else if (diff % 9 == 0) {
+            from += 9;
+            while (from < to) {
+                if (board[from].letter != '_') {
+                    return false;
+                }
+                from += 9;
+            }
+        }
+        //East
+        else if (diff < 8) {
+            from++;
+            while (from < to) {
+                if (board[from].letter != '_') {
+                    return false;
+                }
+                from++;
+            }
+        }
+    }
+    return true;
 }
 
 int main() {
