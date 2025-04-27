@@ -31,6 +31,8 @@ public:
     bool findPath(int from, int to);
     void printBoard();
     void gamePlayLoop();
+private:
+    void handlePromotion(int position);
 };
 
 // Constructor
@@ -137,6 +139,59 @@ bool chessPlayer::isValid(int from, int to) {
     return false;
 }
 
+//This functions handles pawn promotions
+void chessPlayer::handlePromotion(int position) {
+    // Checks if current position has a pawn that reached promotion location
+    if (board[position].letter == 'p') {
+        if ((colors[position] == 'w' && position <= 7) || (!colors[position] == 'w' && position >= 56)) {
+            char choice;
+            std::cout << "Promote pawn to (q=queen, r=rook, b=bishop, h=knight): ";
+            cin >> choice;
+
+            // Creates new piece object for promotion
+            Piece promoted;
+	    // Copies the move count from the pawn being promoted to the new promoted piece
+            promoted.move_count = board[position].move_count;
+
+            // Changes piece based on user's choice
+            switch(tolower(choice)) {
+                case 'q': //Queen
+                    promoted.letter = 'q';
+                    promoted.moves = { -7,-14,-21,-28,-35,-42,-49,-9,-18,-27,-36,-45,-54,-63,
+                                     7,14,21,28,35,42,49,9,18,27,36,45,54,63,
+                                     -8,-16,-24,-32,-40,-48,-56,8,16,24,32,40,48,56,
+                                     -1,-2,-3,-4,-5,-6,-7,1,2,3,4,5,6,7 };
+                    break;
+                case 'r': //Rook
+                    promoted.letter = 'r';
+                    promoted.moves = { -8,-16,-24,-32,-40,-48,-56,8,16,24,32,40,48,56,
+                                      -1,-2,-3,-4,-5,-6,-7,1,2,3,4,5,6,7 };
+                    break;
+                case 'b': //Bishop
+                    promoted.letter = 'b';
+                    promoted.moves = { -7,-14,-21,-28,-35,-42,-49,-9,-18,-27,-36,-45,-54,-63,
+                                     7,14,21,28,35,42,49,9,18,27,36,45,54,63 };
+                    break;
+                case 'h': //Knight/horse
+                    promoted.letter = 'h';
+                    promoted.moves = { -17,-15,-10,-6,6,10,15,17 };
+                    break;
+                // If input is invalid, defaults to queen cause who doesn't want a queen
+                default:
+                    std::cout << "Invalid choice! Defaulting to queen.\n";
+                    promoted.letter = 'q';
+                    promoted.moves = { -7,-14,-21,-28,-35,-42,-49,-9,-18,-27,-36,-45,-54,-63,
+                                     7,14,21,28,35,42,49,9,18,27,36,45,54,63,
+                                     -8,-16,-24,-32,-40,-48,-56,8,16,24,32,40,48,56,
+                                     -1,-2,-3,-4,-5,-6,-7,1,2,3,4,5,6,7 };
+                    break;
+	    }
+            // Replaces pawn with new promoted piece
+            board[position] = promoted;
+        }
+    }
+}
+
 //This function makes the pieces move.
 void chessPlayer::moveMaker(int from, int to) {
     // This places the piece from initial position to destination.
@@ -163,6 +218,9 @@ void chessPlayer::moveMaker(int from, int to) {
     else {
         white = true;
     }
+	
+    //Deals with pawn promotion 
+    handlePromotion(to);
 }
 
 //This function prints the chess board.
