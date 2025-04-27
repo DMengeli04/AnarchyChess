@@ -143,7 +143,7 @@ bool chessPlayer::isValid(int from, int to) {
 void chessPlayer::handlePromotion(int position) {
     // Checks if current position has a pawn that reached promotion location
     if (board[position].letter == 'p') {
-        if ((colors[position] == 'w' && position <= 7) || (!colors[position] == 'w' && position >= 56)) {
+        if ((colors[position] == 'w' && position <= 7) || (colors[position] == 'b' && position >= 56)) {
             char choice;
             std::cout << "Promote pawn to (q=queen, r=rook, b=bishop, h=knight): ";
             cin >> choice;
