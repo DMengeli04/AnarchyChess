@@ -278,7 +278,7 @@ bool chessPlayer::findPath(int from, int to) {
     // West, NorthWest, North, NorthEast
     if (diff < 0) {
         //NorthEast
-        if (diff % 7 == 0) {
+        if (diff % 7 == 0  && diff % 8 != 0 && diff % 9 != 0) {
         from -= 7;
         while (from > to) {
             if (board[from].letter != '_') {
@@ -321,7 +321,7 @@ bool chessPlayer::findPath(int from, int to) {
     // East, SouthEast, South, SouthWest
     else {
         //SouthWest
-        if (diff % 7 == 0) {
+        if (diff % 7 == 0  && diff % 8 != 0 && diff % 9 != 0) {
             from += 7;
             while (from < to) {
                 if (board[from].letter != '_') {
