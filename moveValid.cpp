@@ -271,6 +271,10 @@ void chessPlayer::gamePlayLoop() {
 //Determines if there is a path between to coordinates
 bool chessPlayer::findPath(int from, int to) {
     int diff = to - from;
+
+    //for each if statement, check every space in between to and from
+    //return true if all pieces are '_' (there's a path)
+    //return false if a piece is found
     // West, NorthWest, North, NorthEast
     if (diff < 0) {
         //NorthEast
