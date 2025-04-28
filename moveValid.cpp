@@ -123,7 +123,8 @@ bool chessPlayer::isValid(int from, int to) {
         return false;
     }
 
-    if (!(findPath(from, to))) {
+    //Makes sure peices can't jump over each other (unless they are knights)
+    if (!(findPath(from, to)) && board[from].letter != 'h') {
         return false;
     }
 
