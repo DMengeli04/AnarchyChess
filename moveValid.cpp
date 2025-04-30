@@ -440,9 +440,9 @@ void chessPlayer::performCastling(int king, int rook) {
     newRook = rook - 2;
   } else {
     moveMaker(king, king - 2);
-    moveMaker(rook, rook + 2);
+    moveMaker(rook, rook + 3);
     newKing = king - 2;
-    newRook = rook + 2;
+    newRook = rook + 3;
   }
 
   board[newKing].move_count++;
