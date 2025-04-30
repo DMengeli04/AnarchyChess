@@ -447,6 +447,13 @@ void chessPlayer::performCastling(int king, int rook) {
 
   board[newKing].move_count++;
   board[newRook].move_count++;
+
+ if (white) {
+   white = false;
+}
+ else {
+   white = true;
+ }
 }
 int main() {
         chessPlayer chess;
