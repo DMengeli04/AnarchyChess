@@ -23,7 +23,7 @@ class chessPlayer {
 public:
     std::vector<Piece> board;
     std::vector<char> colors; //This if for tracking the colors of pieces
-    bool white;
+    bool white, castle;
     chessPlayer();
     int chessNotationToIndex(std::string position);
     bool isValid(int from, int to);
@@ -33,12 +33,15 @@ public:
     void gamePlayLoop();
 private:
     void handlePromotion(int position);
+    bool canCastle(int king, int rook);
+    void performCastling(int king, int rook);
 };
 
 // Constructor
 chessPlayer::chessPlayer() {
     board = generate_board();
     white = true;
+    castle = false;
 
     // This segment is for initializing color tracking part
     colors.resize(64);
@@ -107,6 +110,14 @@ bool chessPlayer::isValid(int from, int to) {
        board[to].letter != '_') {
        return false;
     }
+
+// see if can castle
+  if (board[from].letter == 'k' && board[to].letter == 'r') {
+    if (canCastle(from, to)) {
+      castle = true;
+      return true;
+    }
+  }
 
     //If its white's turn and if the piece is not white, then return false
     if (white && colors[from] != 'w') {
@@ -196,6 +207,12 @@ void chessPlayer::handlePromotion(int position) {
 
 //This function makes the pieces move.
 void chessPlayer::moveMaker(int from, int to) {
+
+	if (castle == true) {
+    castle = false;
+    performCastling(from, to);
+    return;
+  }
     // This places the piece from initial position to destination.
     //An example would be making the pawn move from e2 to e4.
     board[to] = board[from];
@@ -364,7 +381,73 @@ bool chessPlayer::findPath(int from, int to) {
     }
     return true;
 }
+bool chessPlayer::canCastle(int king, int rook) {
+  // lets check if the rook and king are valid
 
+  if (board[king].letter != 'k') {
+    return false;
+  }
+  if (board[rook].letter != 'r') {
+    return false;
+  }
+
+  if (colors[king] != colors[rook]) {
+    return false;
+  }
+
+  if (board[king].move_count != 0 || board[rook].move_count != 0) {
+    return false;
+  }
+
+  if (king > rook) {
+    // if king is on the right of rook
+    for (int i = king - 1; i != rook + 1; i--) {
+      if (board[i].letter != '_') {
+        return false;
+      }
+    }
+  } else {
+    for (int i = rook - 1; i != king + 1; i--) {
+      if (board[i].letter != '_') {
+        return false;
+      }
+    }
+  }
+
+  /*
+          if (In_Check(king) == true) {
+                  return false;
+          }
+  */
+  return true;
+}
+
+void chessPlayer::performCastling(int king, int rook) {
+  bool right = false, left = false;
+  if (rook > king) {
+    right = true;
+  }
+  if (rook < king) {
+    left = true;
+  }
+
+  int newKing, newRook;
+
+  if (right == true) {
+    moveMaker(king, king + 2);
+    moveMaker(rook, rook - 2);
+    newKing = king + 2;
+    newRook = rook - 2;
+  } else {
+    moveMaker(king, king - 2);
+    moveMaker(rook, rook + 2);
+    newKing = king - 2;
+    newRook = rook + 2;
+  }
+
+  board[newKing].move_count++;
+  board[newRook].move_count++;
+}
 int main() {
         chessPlayer chess;
         chess.gamePlayLoop();
