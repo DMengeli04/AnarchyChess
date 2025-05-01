@@ -8,10 +8,10 @@ moveMaker function as I was getting a logic error such as pieces not being shown
 /*
 Important things to note about this code. I am listing the things I did not consider while writing this code as it would get too
 complicated and time consuming. It might not be able to do things I haven't listed here but here are gist of it.
-It is unable to: 
--Check for the check and checkmate conditions.
--Check for special move conditions like Pawn promotion or Castling.
 */
+
+
+//Butts lol
 
 #include <iostream>
 #include <string>
