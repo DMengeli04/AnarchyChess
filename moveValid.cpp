@@ -1,4 +1,3 @@
-
 //Siddh Patel's implementation for making valid moves on the chess while maintaing game loop.
 
 /*IMPORTANT NOTE FOR COMPILATION: I included Davyn's cpp file here and commented out his main function in order to make my code compile!*/
@@ -17,6 +16,7 @@ It is unable to:
 #include <iostream>
 #include <string>
 #include "board.cpp"
+
 using namespace std;
 
 class chessPlayer {
@@ -35,6 +35,7 @@ private:
     void handlePromotion(int position);
     bool canCastle(int king, int rook);
     void performCastling(int king, int rook);
+    int enPassant;
 };
 
 // Constructor
@@ -42,6 +43,8 @@ chessPlayer::chessPlayer() {
     board = generate_board();
     white = true;
     castle = false;
+    // No initial target for en Passant
+    enPassant = -1;
 
     // This segment is for initializing color tracking part
     colors.resize(64);
@@ -96,11 +99,51 @@ bool chessPlayer::isValid(int from, int to) {
         return false;
     }
 	
-    // pawns can't move diagonally unless they're capturing
-    if (board[from].letter == 'p' &&
-      (to == from + 9 || to == from - 9 || to == from + 7 || to == from - 7) &&
-      board[to].letter == '_') {
-       return false;
+    // Checks for en Passants
+    if (board[from].letter == 'p' && (to == from + 9 || to == from - 9 ||
+	    to == from + 7 || to == from - 7) && board[to].letter == '_') {
+        // Checks if moving to en Passant target square
+        if (to == enPassant) {
+            // Validates if pawn is on correct row
+            bool validRank = false;
+            // White pawn on 5 row
+            if (colors[from] == 'w' && (from >= 24 && from <= 31)) {
+                validRank = true;
+            }
+            // Black pawn on 4 row
+            if (colors[from] == 'b' && (from >= 32 && from <= 39)) {
+                validRank = true;
+            }
+	    // If the pawn is not on the proper row, the move is rejected
+            if (!validRank) {
+                return false;
+            }
+            // Calculates position of pawn being captured
+            int enemyPawnPos;
+            if (colors[from] == 'w') {
+                // Capture pawn below target
+                enemyPawnPos = to + 8;
+            } else {
+                // Capture pawn above target
+                enemyPawnPos = to - 8;
+            }
+
+            // Verifies if enemy pawn exists
+            if (enemyPawnPos < 0 || enemyPawnPos >= 64) {
+                return false;
+            }
+	    // Verifies if the piece being captured is actually a pawn
+            if (board[enemyPawnPos].letter != 'p') {
+                return false;
+            }
+	    // Prevents the capturing of your own pawn
+            if (colors[enemyPawnPos] == colors[from]) {
+                return false;
+            }
+
+            return true;
+        }
+        return false;
     }
 
    // pawns can't capture on a forward move
@@ -213,6 +256,28 @@ void chessPlayer::moveMaker(int from, int to) {
     performCastling(from, to);
     return;
   }
+ 
+    // Calculates if capture can happen with enPassant
+    if (board[from].letter == 'p' && to == enPassant) {
+        // Determines position of captured pawn
+        int enemyPawnPos;
+        if (colors[from] == 'w') {
+            // Capture pawn below target
+            enemyPawnPos = to + 8;
+        } else {
+            // Capture pawn above target
+            enemyPawnPos = to - 8;
+        }
+
+        // Removes captured pawn
+        Piece empty;
+        empty.letter = '_';
+        empty.moves.clear();
+        empty.move_count = 0;
+        board[enemyPawnPos] = empty;
+        colors[enemyPawnPos] = '_';
+    }
+	
     // This places the piece from initial position to destination.
     //An example would be making the pawn move from e2 to e4.
     board[to] = board[from];
@@ -229,6 +294,16 @@ void chessPlayer::moveMaker(int from, int to) {
     //And then its sets the color at the original position of the piece to be empty.
     colors[to] = colors[from];
     colors[from] = '_';
+
+    // Updates en Passant target after pawn moves
+    enPassant = -1;
+    if (board[to].letter == 'p') {
+        // Checks for two-square pawn move
+        if (to - from == 16 || from - to == 16) {
+            // Sets target to square behind pawn
+            enPassant = (from + to) / 2;
+        }
+    }
 
     //This part is important for transitioning from white's turn to black's turn and vice versa.
     if (white) {
@@ -455,15 +530,9 @@ void chessPlayer::performCastling(int king, int rook) {
    white = true;
  }
 }
+
 int main() {
         chessPlayer chess;
         chess.gamePlayLoop();
         return 0;
 }
-
-
-
-
-
-
-
