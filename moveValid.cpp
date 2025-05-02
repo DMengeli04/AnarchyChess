@@ -5,14 +5,6 @@
 /*Credits: I got help from copilot for printBoard function and also my brother-in-law (who is a software engineer) helped me fix my isValid and 
 moveMaker function as I was getting a logic error such as pieces not being shown which were moved, etc.*/
 
-/*
-Important things to note about this code. I am listing the things I did not consider while writing this code as it would get too
-complicated and time consuming. It might not be able to do things I haven't listed here but here are gist of it.
-*/
-
-
-//Butts lol
-
 #include <iostream>
 #include <string>
 #include "board.cpp"
@@ -31,6 +23,8 @@ public:
     bool findPath(int from, int to);
     void printBoard();
     void gamePlayLoop();
+    bool King_Under_Check();
+    bool king_can_be_in_check(int from,int to);
 private:
     void handlePromotion(int position);
     bool canCastle(int king, int rook);
@@ -179,6 +173,10 @@ bool chessPlayer::isValid(int from, int to) {
 
     //Makes sure peices can't jump over each other (unless they are knights)
     if (!(findPath(from, to)) && board[from].letter != 'h') {
+        return false;
+    }
+
+    if(king_can_be_in_check(from, to)){
         return false;
     }
 
@@ -346,6 +344,40 @@ void chessPlayer::gamePlayLoop() {
         string from, to;
         while (true) {
                 printBoard();
+		 if (King_Under_Check()){
+                        if(white){
+                                cout << "White side is under check." << endl;
+                        }
+                        else {
+                              	cout << "Black side is under check." << endl;
+                        }
+                        bool checkValidator = false;
+                        for(int i = 0; i <= 63; i++){
+                                if(board[i].letter  != '_'){
+                                        if((colors[i] == 'w' && white)  || (colors[i] == 'b' && !white)){
+                                                for(int j = 0; j <= 63; j++){
+                                                        if(isValid(i, j)){
+                                                                if(!king_can_be_in_check(i, j)){
+                                                                        checkValidator = true;
+                                                                        i = 100; //this helps breaking out of the loop
+                                                                        break;
+                                                                }
+                                                        }
+                                                }
+                                        }
+                                }
+                        }
+                        if(!checkValidator){
+                                cout <<"Psych! You got CHECKMATED Loser!" << endl;
+                                if(white){
+                                        cout <<"White side is the WINNER!" << endl;
+                                }
+                                else{
+                                     	 cout <<"Black side is the WINNER!" << endl;
+                                }
+                                return;
+                        }
+                }
                 cout << "\nYour Move (Eg: e2 e4 in lower case) or type 'quit' to exit: ";
                 cin >> from >> to;
                 if (from == "quit" || to == "quit"){
@@ -529,6 +561,82 @@ void chessPlayer::performCastling(int king, int rook) {
  else {
    white = true;
  }
+}
+
+bool chessPlayer::King_Under_Check(){
+        char kingClr, opponentClr;
+
+        if(white){
+                kingClr = 'w';
+                opponentClr = 'b';
+        }
+	else{
+             	 kingClr = 'b';
+                 opponentClr = 'w';
+        }
+
+	//for loop for going through each square
+        for(int i = 0; i <= 63; i++){
+                //this finds the king
+                if(board[i].letter == 'k'){
+                        if(colors[i] == kingClr){
+                                //oncecthe king is found, this portion evaluates if king is under check
+                                for(int k = 0; k <= 63; k++){
+                                        //this makes sure the king is being given check by enemy pieces
+                                        if(colors[k] == opponentClr && board[k].letter != '_'){
+                                                int diff = i - k;
+                                                //just like in isValid, this checks if the moves valid
+                                                for (size_t j = 0; j < board[k].moves.size(); j++) {
+                                                        int temp = board[k].moves[j];
+                                                        if (temp == diff) {
+                                                                //this portion ensures that for pawns, only diagnoal checking to king is allowed, pawns cannot give king check if they pawns made forward move.
+                                                                if (board[k].letter == 'p') {
+                                                                        if((diff  == -8 || diff == -16 || diff == 8 || diff == 16)){
+                                                                                continue;
+                                                                        }
+                                                                }
+                                                                //this portion evaluates if the king is under check by finding clear path to king
+                                                                if(findPath(k, i)){
+                                                                        return true; //returns true if king is under check
+                                                                }
+                                                                break;
+                                                        }
+                                                }
+                                        }
+                                }
+                        }
+                }
+        }
+	return false;
+}
+
+bool chessPlayer::king_can_be_in_check(int from,int to){
+        //Initially, we saved the board pieces information before making changes
+        Piece temp1 = board[from];
+        Piece temp2 = board[to];
+
+        char tempClr1 = colors[from];
+        char tempClr2 = colors[to];
+
+        //Just like moveMaker function, we make the move, albeit temporarily
+        board[to] = board[from];
+        board[from].letter = '_';
+
+        colors[to] = colors[from];
+        colors[from] = '_';
+
+        //this checks if the king is under check after we made the temporary move
+        bool checker;
+        checker = King_Under_Check();
+
+        //this reverts the board's information to the initial state
+        board[from] = temp1;
+        board[to] = temp2;
+
+        colors[from] = tempClr1;
+        colors[to] = tempClr2;
+
+        return checker;
 }
 
 int main() {
