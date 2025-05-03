@@ -396,22 +396,36 @@ void chessPlayer::gamePlayLoop() {
 //Determines if there is a path between to coordinates
 bool chessPlayer::findPath(int from, int to) {
     int diff = to - from;
-
-    //for each if statement, check every space in between to and from
-    //return true if all pieces are '_' (there's a path)
-    //return false if a piece is found
     // West, NorthWest, North, NorthEast
     if (diff < 0) {
         //NorthEast
-        if (diff % 7 == 0  && diff % 8 != 0 && diff % 9 != 0) {
-        from -= 7;
-        while (from > to) {
-            if (board[from].letter != '_') {
+        if (diff % 7 == 0 && diff % 8 != 0 && diff % 9 != 0) {
+            if (board[from].letter == 'r') {//keeps the rook in line
+                from--;
+                while (from > to) {
+                    if (board[from].letter != '_') {
+                        return false;
+                    }
+                    if ((from + 1) % 8 == 0) {//prevent wraparound
+                        return false;
+                    }
+                    from--;
+                }
+            }
+            if (to % 8 == 0) {//prevent wraparound
                 return false;
             }
             from -= 7;
+            while (from > to) {
+                if (board[from].letter != '_') {
+                    return false;
+                }
+                if ((from + 1) % 8 == 0) {//prevent wraparound
+                    return false;
+                }
+                from -= 7;
+            }
         }
-    }
         //North
         else if (diff % 8 == 0) {
             from -= 8;
@@ -424,9 +438,15 @@ bool chessPlayer::findPath(int from, int to) {
         }
         //NorthWest
         else if (diff % 9 == 0) {
+            if ((to + 1) % 8 == 0) {//prevent wraparound
+                return false;
+            }
             from -= 9;
             while (from > to) {
                 if (board[from].letter != '_') {
+                    return false;
+                }
+                if ((from + 1) % 8 == 0) {//prevent wraparound
                     return false;
                 }
                 from -= 9;
@@ -434,9 +454,15 @@ bool chessPlayer::findPath(int from, int to) {
         }
         //West
         else if (diff > -8) {
+            if ((to + 1) % 8 == 0) {//prevent wraparound
+                return false;
+            }
             from--;
             while (from > to) {
                 if (board[from].letter != '_') {
+                    return false;
+                }
+                if ((from + 1) % 8 == 0) {//prevent wraparound
                     return false;
                 }
                 from--;
@@ -446,10 +472,25 @@ bool chessPlayer::findPath(int from, int to) {
     // East, SouthEast, South, SouthWest
     else {
         //SouthWest
-        if (diff % 7 == 0  && diff % 8 != 0 && diff % 9 != 0) {
+        if (diff % 7 == 0) {
+            if (board[from].letter == 'r') {//keeps the rook in line
+                from++;
+                while (from < to) {
+                    if (board[from].letter != '_') {
+                        return false;
+                    }
+                    if (from % 8 == 0) {//prevent wraparound
+                        return false;
+                    }
+                    from++;
+                }
+            }
             from += 7;
             while (from < to) {
                 if (board[from].letter != '_') {
+                    return false;
+                }
+                if (from % 8 == 0) {//prevent wraparound
                     return false;
                 }
                 from += 7;
@@ -467,9 +508,15 @@ bool chessPlayer::findPath(int from, int to) {
         }
         //SouthEast
         else if (diff % 9 == 0) {
+            if (to % 8 == 0) {//prevent wraparound
+                return false;
+            }
             from += 9;
             while (from < to) {
                 if (board[from].letter != '_') {
+                    return false;
+                }
+                if (from % 8 == 0) {//prevent wraparound
                     return false;
                 }
                 from += 9;
@@ -477,9 +524,15 @@ bool chessPlayer::findPath(int from, int to) {
         }
         //East
         else if (diff < 8) {
+            if (to % 8 == 0) {//prevent wraparound
+                return false;
+            }
             from++;
             while (from < to) {
                 if (board[from].letter != '_') {
+                    return false;
+                }
+                if (from % 8 == 0) {//prevent wraparound
                     return false;
                 }
                 from++;
@@ -488,6 +541,7 @@ bool chessPlayer::findPath(int from, int to) {
     }
     return true;
 }
+
 bool chessPlayer::canCastle(int king, int rook) {
   // lets check if the rook and king are valid
 
