@@ -575,11 +575,19 @@ bool chessPlayer::canCastle(int king, int rook) {
     }
   }
 
-  /*
-          if (In_Check(king) == true) {
-                  return false;
-          }
-  */
+  if (King_Under_Check()) {
+	  return false;
+  }
+
+  if (king_can_be_in_check(king, king + 2)) {
+	  return false;
+  }
+
+  if (king_can_be_in_check(king, king - 2)) {
+	  return false;
+  }
+
+	
   return true;
 }
 
