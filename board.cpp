@@ -119,7 +119,7 @@ std::vector<Piece> generate_board(char mode) {
     // board is complete
   } else if (mode == 'a') {
 
-    std::vector<Piece> rando_pieces = {white_pawn, black_pawn, knight,
+    std::vector<Piece> rando_pieces = {black_pawn, knight,
                                        bishop,     rook,       queen};
 
     // create 8 x 8 board
@@ -148,6 +148,8 @@ std::vector<Piece> generate_board(char mode) {
       board.push_back(empty);
     }
 
+     rando_pieces = {white_pawn, knight,
+                                       bishop,     rook,       queen};
     // second row white
 
     for (int c = 0; c < 12; c++) {
