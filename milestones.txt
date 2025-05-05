@@ -1,8 +1,57 @@
-Tasks:
+All meetings were reconstructed from memory and project evidence
+
+March 27 Meeting 1:30 - 2:00
+Tasks determined
 Jeffrey - Research GUI to use on the program
 Davyn - Write function to generate starting game board in chess and set up class definitions for pieces
 Siddh - Write function to decide moves
 Sergio - Manage the game loop
 
-Things to have done by Monday, 3/31:
-Be able to generate a starting board and make a move
+April 1st Meeting 1:30 - 2:00
+All members present except Sergio
+Piece sprites were done and the decision was made to wait until later to work on the project
+
+April 22 Meeting 1:30 - 2:00
+All four members present
+Checklist of tasks created, Members treated them as tickets
+    ◦    End when game is over
+    ◦    Pawn double move on first only
+    ◦    Castling
+    ◦    Pawn promotion
+    ◦    En passant
+    ◦    Pawns can only move diagonally when capturing
+    ◦    Pawns can’t move forward to capture
+    ◦    Shouldn’t be able to jump pieces
+    ◦    Check mate (horizontal check, vertical check, knight check)
+Davyn and Jeffrey implemented Pawn double move on first only
+
+April 26 Meeting 1:30 - 2:00
+All four members present
+Checklist had become
+    ◦    End when game is over
+    ◦    Castling
+    ◦    Pawn promotion
+    ◦    En passant
+    ◦    Check mate (horizontal check, vertical check, knight check)
+Sergio volunteered to code pawn promotion
+Davyn and Siddh volunteered to code Castling
+Jeffrey would translate these to the gui
+
+April 29 Meeting 1:30 - 2:00
+All four members present
+Checklist had become
+    ◦    End when game is over
+    ◦    En passant
+    ◦    Check mate (horizontal check, vertical check, knight check)
+Sergio volunteered to code En Passant
+Siddh volunteered to code check and checkmate
+
+April 29 Meeting 1:30 - 2:00
+All four members present
+Checklist had become
+Optional:
+    ◦    Anarchy
+    ◦    Clock
+    ◦    Dead material
+Some last problems were fixed during this meeting
+Davyn said he would get anarchy working
