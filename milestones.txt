@@ -1,3 +1,6 @@
+GITHUB repo:
+	https://github.com/DMengeli04/Final-Project.git
+
 Meeting log
 All meetings were reconstructed from memory and project evidence
 
