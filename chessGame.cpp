@@ -690,6 +690,15 @@ void chessPlayer::gamePlayLoop() {
 
 // Determines if there is a path between to coordinates
 bool chessPlayer::findPath(int from, int to) {
+    //knight moves must be in line
+    if (board[from].letter == 'h') {
+    if (to <= 63 && to >= 0) {
+        return true;
+    }
+    else {
+        return false;
+    }
+  }
   int diff = to - from;
   // West, NorthWest, North, NorthEast
   if (diff < 0) {
