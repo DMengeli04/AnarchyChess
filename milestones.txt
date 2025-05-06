@@ -146,11 +146,12 @@ Command line version:
     chess notations like e2 e4. The notations will contain two set of words, one for starting position such as e2, and    
     other is destination position such as e4. Please make sure you enter these notation in lower case for letters.
 Gui version:
-    The code is compiled by visual studio, so I don't know if it can be compiled separetely.
-    The executable is included in the github repo. It can be run on it's own, though it will
-    likely be flagged as malware. The game plays like chess. Click on a piece and choose a spot
-    to move it to. The game should only move pieces according to the rules of chess. Castling is
-    done by clicking on the king and then the rook you want to castle with, given that you can castle.
-    Pawn promotion opens a menu that lets you choose a piece. The buttons on the side reset the board and
-    are used to choose the gamemode.
+    The code is compiled by visual studio, so I don't know if it can be compiled seperately.
+    The executable is included in the github repo in the main branch and the code is in the 
+    Jeffrey Wiggs UI branch. It can be run on it's own, though it will likely be flagged as 
+    malware. The game plays like chess. Click on a piece and choose a spot to move it to. The
+    game should only move pieces according to the rules of chess. Castling is done by clicking
+    on the king and then the rook you want to castle with, given that you can castle. Pawn 
+    promotion opens a menu that lets you choose a piece. The buttons on the side reset the 
+    board and are used to choose the gamemode.
 
