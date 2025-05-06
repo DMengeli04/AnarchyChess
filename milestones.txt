@@ -91,13 +91,60 @@ Jeffrey Wiggs : )
 	5/5/2025 1/2 hour: Added all piece modes
 	5/6/2025 1 hour: Code cleanup
 Davyn Mengeling
-Siddh Patel
+
+
+Siddh Patel's Time Log: 
+	Total time 18.05 hours
+	Date: 30th March 2025
+		-4:00 pm to 5;00 pm => Studied chess rules, move validation segments, and brainstormed a possible 			implementation for a dummy version of real chess.
+
+		-5:00 pm to 6:00 pm => Studied Davyn's code and started implementing my code using his code as a base.
+
+		-6:00 pm to 8:00 pm. => Started implementing the code. Finished implementing all functions except PrintBoard 		and Game Loop. I did take few short breaks between.
+
+		-8:00 pm to 9:00 pm => Implemented PrintBoard function with the help of copilot to help me fix my 			implementation and make my board visually appealing. Also finished game loop function.
+
+		-9:00 pm  to 10:00 pm=> Fixed compilation errors as well as other errors in the code. At one point I didn't 		know why my code wasn't showing the pieces I moved on the board and so I asked my brother-in-law for help 		who helped me fix my isValid and moveMaker function. Finally my code worked as expected but I didn't add 		complex functionalities I listed in my code.
+		Total hours worked: 6 hours + 1 (in lab)
+
+	Date: 8th April 2025
+		-1:00 pm to 2;00 pm => Fixed bishop/queen.diagonal pieces only moving one square diagonally at a time to all 		available squares now. This was a group effort, I contributed working on it together.
+
+	Date: 15th April 2025
+		-1:00 pm to 2:00 pm => Fixed pawn moving 2 squares in all turns to now only allowed in the first turn. This 		was a group effort, I contributed working on it together.
+
+	Date: 25th April 2025
+		-4:17 pm to 5:29 pm => Researched on how to do castling functions. Since I was having hard time on how to 		implement it, I watched various YouTube videos which makes the logic easier to understand and
+		Help me brainstorm.
+
+	Date: 27th April 2025
+		-5:00 pm to 7:00 pm => Implemented the castling functionality. Me and Davyn worked on this together. While 		it was 	not working as expected, it was fixed later by Davyn and Jeffrey on demo day.
+
+	Date: 28th April 2025
+		-6:15 pm to 7:23 pm => I researched on how to do the check/checkmate and brainstormed various ways to do it.
+
+	Date: 30th April 2025
+		-5:37 pm to 8:02 pm = > Implemented checkmate functionality. While it worked initially, it had many bugs. I 		did took short breaks between.
+
+	Date: 1st May 2025
+		-7:15pm to 9;23 pm = > Fixed all the bugs in checkmate functionality.
+
+	Date: 6th May 2025
+		-9:00 pm to 10:10 pm => Organized our code better, moved class of chessPlayer to a .h file. And trying to 		make a makefile.
+
+
+
 Sergio Macias-Ayala
 
 
 User Manual
 There are two versions of the game, the command line version and the GUI version
 Command line version:
+    In the command line version, make a new directory and add chessGame.cpp and chessGame.h in that same directory.
+    For compilation do "g++ chessGame.cpp" command and then "./a.out". It will then ask you for modes, select "standard" if 
+    you wish to play regular chess, or other modes if you wish to play "Anarchy" chess. To play the game, you have to enter
+    chess notations like e2 e4. The notations will contain two set of words, one for starting position such as e2, and    
+    other is destination position such as e4. Please make sure you enter these notation in lower case for letters.
 Gui version:
     The code is compiled by visual studio, so I don't know if it can be compiled separetely.
     The executable is included in the github repo. It can be run on it's own, though it will
