@@ -1,6 +1,6 @@
 /*
 *Authors: Siddh Patel, Davyn Mengling, Jeffrey Wiggs, Sergio Macias-Ayala
-*File Name: moveValid.cpp
+*File Name: chessGame.cpp
 *Description:
 This is the backend code for chess game. It sets the board, makes moves, checks whether moves are valid, and also incorporates
 the following functionalities important for chess game:
