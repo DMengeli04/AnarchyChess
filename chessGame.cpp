@@ -197,6 +197,7 @@ std::vector<Piece> generate_board(char mode) {
   return board;
 }
 
+/*
 class chessPlayer {
 public:
   std::vector<Piece> board;
@@ -215,7 +216,7 @@ public:
   bool canCastle(int king, int rook);
   void performCastling(int king, int rook);
   int enPassant;
-};
+};*/
 
 // Constructor
 chessPlayer::chessPlayer() {
