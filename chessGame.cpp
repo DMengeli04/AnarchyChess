@@ -300,7 +300,7 @@ std::vector<Piece> generate_board(std::string mode) {
 
 // Constructor
 chessPlayer::chessPlayer() {
-  char mode;
+  std::string mode;
   cout << "What game mode would you like?\nstandard\nanarchy\npawn\nrook\nbishop\nknight\nqueen"
        << endl;
 
