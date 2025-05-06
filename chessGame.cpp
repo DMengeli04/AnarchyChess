@@ -181,6 +181,7 @@ std::vector<Piece> generate_board(std::string mode) {
 
     // board is complete
   }
+  //All pawns mode
   else if (mode == "pawn") {
         for (int i = 0; i < 4; i++) {
             board.push_back(black_pawn);
@@ -201,6 +202,7 @@ std::vector<Piece> generate_board(std::string mode) {
             board.push_back(white_pawn);
         }
     }
+    //All bishops mode
     else if (mode == "bishop") {
         for (int i = 0; i < 4; i++) {
             board.push_back(bishop);
@@ -221,6 +223,7 @@ std::vector<Piece> generate_board(std::string mode) {
             board.push_back(bishop);
         }
     }
+    //All rooks mode
     else if (mode == "rook") {
         for (int i = 0; i < 4; i++) {
             board.push_back(rook);
@@ -241,6 +244,7 @@ std::vector<Piece> generate_board(std::string mode) {
             board.push_back(rook);
         }
     }
+    //All knights mode
     else if (mode == "knight") {
         for (int i = 0; i < 4; i++) {
             board.push_back(knight);
@@ -261,6 +265,7 @@ std::vector<Piece> generate_board(std::string mode) {
             board.push_back(knight);
         }
     }
+    //All queens mode
     else if (mode == "queen") {
         for (int i = 0; i < 4; i++) {
             board.push_back(queen);
@@ -303,7 +308,7 @@ chessPlayer::chessPlayer() {
   std::string mode;
   cout << "What game mode would you like?";
   cout << endl;
-  cout <<"Pick: standard, anarchy, pawn, rook, bishop knight, queen (write the whole name): ";
+  cout <<"Pick: standard, anarchy, pawn, rook, bishop, knight, queen (write the whole name): ";
   cin >> mode;
     
   board = generate_board(mode);
