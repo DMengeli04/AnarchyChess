@@ -26,7 +26,7 @@ Piece &Piece::operator=(const Piece &p) {
   return *this;
 }
 
-std::vector<Piece> generate_board(char mode) {
+std::vector<Piece> generate_board(std::string mode) {
   // the board will be an 8 x 8 vector of Piece objects
   std::vector<Piece> board;
 
@@ -93,7 +93,7 @@ std::vector<Piece> generate_board(char mode) {
   empty.moves = {0};
 
   // create 8 x 8 board
-  if (mode == 'r') {
+  if (mode == "standard") {
     // first row
     board.push_back(rook);
     board.push_back(knight);
@@ -130,7 +130,7 @@ std::vector<Piece> generate_board(char mode) {
     board.push_back(rook);
 
     // board is complete
-  } else if (mode == 'a') {
+  } else if (mode == "anarchy") {
 
     std::vector<Piece> rando_pieces = {black_pawn, knight, bishop, rook, queen};
 
@@ -181,6 +181,106 @@ std::vector<Piece> generate_board(char mode) {
 
     // board is complete
   }
+  else if (mode == "pawn") {
+        for (int i = 0; i < 4; i++) {
+            board.push_back(black_pawn);
+        }
+        board.push_back(king);
+        for (int i = 0; i < 11; i++) {
+            board.push_back(black_pawn);
+        }
+        // empty pieces
+        for (int j = 0; j < 32; j++) {
+            board.push_back(empty);
+        }
+        for (int i = 0; i < 12; i++) {
+            board.push_back(white_pawn);
+        }
+        board.push_back(king);
+        for (int i = 0; i < 3; i++) {
+            board.push_back(white_pawn);
+        }
+    }
+    else if (mode == "bishop") {
+        for (int i = 0; i < 4; i++) {
+            board.push_back(bishop);
+        }
+        board.push_back(king);
+        for (int i = 0; i < 11; i++) {
+            board.push_back(bishop);
+        }
+        // empty pieces
+        for (int j = 0; j < 32; j++) {
+            board.push_back(empty);
+        }
+        for (int i = 0; i < 12; i++) {
+            board.push_back(bishop);
+        }
+        board.push_back(king);
+        for (int i = 0; i < 3; i++) {
+            board.push_back(bishop);
+        }
+    }
+    else if (mode == "rook") {
+        for (int i = 0; i < 4; i++) {
+            board.push_back(rook);
+        }
+        board.push_back(king);
+        for (int i = 0; i < 11; i++) {
+            board.push_back(rook);
+        }
+        // empty pieces
+        for (int j = 0; j < 32; j++) {
+            board.push_back(empty);
+        }
+        for (int i = 0; i < 12; i++) {
+            board.push_back(rook);
+        }
+        board.push_back(king);
+        for (int i = 0; i < 3; i++) {
+            board.push_back(rook);
+        }
+    }
+    else if (mode == "knight") {
+        for (int i = 0; i < 4; i++) {
+            board.push_back(knight);
+        }
+        board.push_back(king);
+        for (int i = 0; i < 11; i++) {
+            board.push_back(knight);
+        }
+        // empty pieces
+        for (int j = 0; j < 32; j++) {
+            board.push_back(empty);
+        }
+        for (int i = 0; i < 12; i++) {
+            board.push_back(knight);
+        }
+        board.push_back(king);
+        for (int i = 0; i < 3; i++) {
+            board.push_back(knight);
+        }
+    }
+    else if (mode == "queen") {
+        for (int i = 0; i < 4; i++) {
+            board.push_back(queen);
+        }
+        board.push_back(king);
+        for (int i = 0; i < 11; i++) {
+            board.push_back(queen);
+        }
+        // empty pieces
+        for (int j = 0; j < 32; j++) {
+            board.push_back(empty);
+        }
+        for (int i = 0; i < 12; i++) {
+            board.push_back(queen);
+        }
+        board.push_back(king);
+        for (int i = 0; i < 3; i++) {
+            board.push_back(queen);
+        }
+    }
   // initialize color_board
   for (int a = 0; a < 16; a++) {
     color_board.push_back('b');
@@ -193,6 +293,7 @@ std::vector<Piece> generate_board(char mode) {
   for (int c = 0; c < 16; c++) {
     color_board.push_back('w');
   }
+ 
   
   return board;
 }
@@ -200,7 +301,7 @@ std::vector<Piece> generate_board(char mode) {
 // Constructor
 chessPlayer::chessPlayer() {
   char mode;
-  cout << "What game mode would you like? Type R for regular and A for anarchy"
+  cout << "What game mode would you like?\nstandard\nanarchy\npawn\nrook\nbishop\nknight\nqueen"
        << endl;
 
   cin >> mode;
