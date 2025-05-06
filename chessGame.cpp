@@ -767,7 +767,7 @@ bool chessPlayer::findPath(int from, int to) {
   // East, SouthEast, South, SouthWest
   else {
     // SouthWest
-    if (diff % 7 == 0) {
+    if (diff % 7 == 0 && diff % 8 != 0 && diff % 9 != 0) {
       if (board[from].letter == 'r') { // keeps the rook in line
         from++;
         while (from < to) {
