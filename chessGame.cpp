@@ -9,7 +9,7 @@ the following functionalities important for chess game:
     -En Passant
     -Pawn Promotion
   */
-#include "piece.h"
+#include "chessGame.h"
 #include <iostream>
 #include <random>
 #include <string>
