@@ -1,3 +1,4 @@
+Meeting log
 All meetings were reconstructed from memory and project evidence
 
 March 27 Meeting 1:30 - 2:00
@@ -55,3 +56,51 @@ Optional:
     ◦    Dead material
 Some last problems were fixed during this meeting
 Davyn said he would get anarchy working
+
+Time logs:
+
+Jeffrey Wiggs : )
+	3/26/2025 1/2 hour: I researched UI tools for c++ and picked Qt designer
+	3/27/2025 1/2 hour: I attempted to install Qt designer, but the process
+		was complicated and the user agreement scared me off. I picked
+		Visual Studio community instead.
+	3/31/2025 3 hours: I downloaded the software and used a tutorial to create
+		a simple calculator with UI. I then floundered for an extended period 
+		of time trying to connect it to the github.
+	4/3/2025 1/2 hour: I designed graphics for all the chess pieces
+	4/7/2025 2.5 hours: I got the board built and figured out how to change images
+	4/8/2025 1.5 hours: I fixed a visual problem with the board and figured out
+		how to use github through Visual Studio more effectively.
+	4/15/2025 2 hours: I figured out a compatability issue that threatened to 
+		ruin the project. I did a bunch of grunt work and my code still won't work.
+	4/17/2025 3 hours: I did it! Sort of. The game now accurately displays the
+		code we currently have. That code still needs a lot of work and it could 
+		look nicer, but it works and that's what matters. Designed some new art 
+		assets, updated to slightly better code, and fixed a minor issue.
+	4/22/2025 1 hour: Pawns can only double move once and pointers have vanished 
+		from the project.
+	4/24/2025 1 hour: Pieces don't jump eachother anymore (except knights).
+	4/28/2025 1.5 hour: Implemented pawn promotion. Fixed some issues
+	4/30/2025 1/2 hour: Fixed Castling
+	5/1/2025 1/2 hour: Implementing en Passant and checkmate
+	5/2/2025 1 hour: Fixed findpath to prevent wraparound attacks from rooks and
+		bishops
+	5/5/2025 1/2 hour: Added all piece modes
+	5/6/2025 1 hour: Code cleanup
+Davyn Mengeling
+Siddh Patel
+Sergio Macias-Ayala
+
+
+User Manual
+There are two versions of the game, the command line version and the GUI version
+Command line version:
+Gui version:
+    The code is compiled by visual studio, so I don't know if it can be compiled separetely.
+    The executable is included in the github repo. It can be run on it's own, though it will
+    likely be flagged as malware. The game plays like chess. Click on a piece and choose a spot
+    to move it to. The game should only move pieces according to the rules of chess. Castling is
+    done by clicking on the king and then the rook you want to castle with, given that you can castle.
+    Pawn promotion opens a menu that lets you choose a piece. The buttons on the side reset the board and
+    are used to choose the gamemode.
+
