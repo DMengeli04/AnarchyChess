@@ -187,11 +187,16 @@ std::vector<Piece> generate_board(std::string mode) {
 
         // board is complete
     }
+    //All pawns mode
     else if (mode == "pawn") {
+        //first row
         for (int i = 0; i < 4; i++) {
             board.push_back(black_pawn);
         }
+
         board.push_back(king);
+
+        // rest of first and second row
         for (int i = 0; i < 11; i++) {
             board.push_back(black_pawn);
         }
@@ -199,14 +204,18 @@ std::vector<Piece> generate_board(std::string mode) {
         for (int j = 0; j < 32; j++) {
             board.push_back(empty);
         }
+
+        // second row white
         for (int i = 0; i < 12; i++) {
             board.push_back(white_pawn);
         }
         board.push_back(king);
+        //rest of white
         for (int i = 0; i < 3; i++) {
             board.push_back(white_pawn);
         }
     }
+    //All bishops mode
     else if (mode == "bishop") {
         for (int i = 0; i < 4; i++) {
             board.push_back(bishop);
@@ -227,6 +236,7 @@ std::vector<Piece> generate_board(std::string mode) {
             board.push_back(bishop);
         }
     }
+    //All rooks mode
     else if (mode == "rook") {
         for (int i = 0; i < 4; i++) {
             board.push_back(rook);
@@ -247,6 +257,7 @@ std::vector<Piece> generate_board(std::string mode) {
             board.push_back(rook);
         }
     }
+    //All knights mode
     else if (mode == "knight") {
         for (int i = 0; i < 4; i++) {
             board.push_back(knight);
@@ -267,6 +278,7 @@ std::vector<Piece> generate_board(std::string mode) {
             board.push_back(knight);
         }
     }
+    //All queens mode
     else if (mode == "queen") {
         for (int i = 0; i < 4; i++) {
             board.push_back(queen);
@@ -497,7 +509,6 @@ bool chessPlayer::isValid(int from, int to) {
 
 //This function makes the pieces move.
 void chessPlayer::moveMaker(int from, int to) {
-
     if (castle == true) {
         castle = false;
         performCastling(from, to);
@@ -526,10 +537,6 @@ void chessPlayer::moveMaker(int from, int to) {
         colors[enemyPawnPos] = '_';
     }
 
-
-
-
-
     // This places the piece from initial position to destination.
     //An example would be making the pawn move from e2 to e4.
     board[to] = board[from];
@@ -538,7 +545,7 @@ void chessPlayer::moveMaker(int from, int to) {
     //This segment is to ensure that the original position of the piece which was moved is empty.
     //An example would be when we move e2 to e4, this segment ensures that the  place e2 is empty now.
     board[from].letter = '_';
-    board[from].moves.clear();
+    //board[from].moves.clear();
     board[from].move_count = 0;
 
     //This updates the color tracking feature .
@@ -569,11 +576,20 @@ void chessPlayer::moveMaker(int from, int to) {
 
 //Determines if there is a path between to coordinates
 bool chessPlayer::findPath(int from, int to) {
+    //knight moves must be in line
+    if (board[from].letter == 'h') {
+        if (to <= 63 && to >= 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     int diff = to - from;
     // West, NorthWest, North, NorthEast
     if (diff < 0) {
         //NorthEast
-        if (diff % 7 == 0 && diff % 8 != 0 && diff % 9 != 0) {
+        if (diff % 7 == 0 && diff % 8 != 0 && diff % 9 != 0 && to % 8 != 0) {
             if (board[from].letter == 'r') {//keeps the rook in line
                 from--;
                 while (from > to) {
@@ -646,7 +662,7 @@ bool chessPlayer::findPath(int from, int to) {
     // East, SouthEast, South, SouthWest
     else {
         //SouthWest
-        if (diff % 7 == 0) {
+        if (diff % 7 == 0 && diff % 8 != 0 && diff % 9 != 0) {
             if (board[from].letter == 'r') {//keeps the rook in line
                 from++;
                 while (from < to) {
