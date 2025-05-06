@@ -1,14 +1,14 @@
-// Siddh Patel's implementation for making valid moves on the chess while
-// maintaing game loop.
-
-/*IMPORTANT NOTE FOR COMPILATION: I included Davyn's cpp file here and commented
- * out his main function in order to make my code compile!*/
-
-/*Credits: I got help from copilot for printBoard function and also my
-brother-in-law (who is a software engineer) helped me fix my isValid and
-moveMaker function as I was getting a logic error such as pieces not being shown
-which were moved, etc.*/
-
+/*
+*Authors: Siddh Patel, Davyn Mengling, Jeffrey Wiggs, Sergio Macias-Ayala
+*File Name: moveValid.cpp
+*Description:
+This is the backend code for chess game. It sets the board, makes moves, checks whether moves are valid, and also incorporates
+the following functionalities important for chess game:
+    -Check/Checkmate
+    -Castling
+    -En Passant
+    -Pawn Promotion
+  */
 #include "piece.h"
 #include <iostream>
 #include <random>
@@ -163,7 +163,6 @@ std::vector<Piece> generate_board(char mode) {
     rando_pieces = {white_pawn, knight, bishop, rook, queen};
 
     // second row white
-
     for (int c = 0; c < 12; c++) {
       static std::random_device rd;
       static std::mt19937 gen(rd());
@@ -183,7 +182,6 @@ std::vector<Piece> generate_board(char mode) {
     // board is complete
   }
   // initialize color_board
-
   for (int a = 0; a < 16; a++) {
     color_board.push_back('b');
   }
@@ -195,11 +193,7 @@ std::vector<Piece> generate_board(char mode) {
   for (int c = 0; c < 16; c++) {
     color_board.push_back('w');
   }
-
-  // color board created
-
-  // testing prints
-
+  
   return board;
 }
 
@@ -217,8 +211,6 @@ public:
   void gamePlayLoop();
   bool King_Under_Check();
   bool king_can_be_in_check(int from, int to);
-
-private:
   void handlePromotion(int position);
   bool canCastle(int king, int rook);
   void performCastling(int king, int rook);
@@ -227,7 +219,6 @@ private:
 
 // Constructor
 chessPlayer::chessPlayer() {
-
   char mode;
   cout << "What game mode would you like? Type R for regular and A for anarchy"
        << endl;
@@ -259,14 +250,16 @@ int chessPlayer::chessNotationToIndex(std::string position) {
   if (position.length() != 2) {
     return -1;
   }
-
+  
   // This segment converts letts and numbers to appropriate array index
   char alphabet = position[0] - 97; // 97 is ASCII for 'a'
   char number = 56 - position[1];   // 56 is ASCII for 8
 
+  //if the letters are not a through g, its not valid
   if (alphabet < 0 || alphabet > 7) {
     return -1;
   }
+  //if the numbers are not 0 through 7, it is not valid
   if (number < 0 || number > 7) {
     return -1;
   }
@@ -528,8 +521,8 @@ void chessPlayer::moveMaker(int from, int to) {
 }
 
 // This function prints the chess board.
-// CITE: I got help from copilot for properly printing the chess board and help
-// me fix my implementation.
+//This function was made only to test the backend code on terminal.
+//CITATION: I used copilot to help me format printing/output better.
 void chessPlayer::printBoard() {
   // This is to show the alphabets a to h at the top of the board.
   cout << "\n  a b c d e f g h\n";
@@ -557,6 +550,7 @@ void chessPlayer::printBoard() {
 }
 
 // This function is for maintaining game play loop.
+//This function was made only to test the backend code on terminal.
 void chessPlayer::gamePlayLoop() {
   string from, to;
   while (true) {
@@ -586,9 +580,9 @@ void chessPlayer::gamePlayLoop() {
       if (!checkValidator) {
         cout << "Psych! You got CHECKMATED Loser!" << endl;
         if (white) {
-          cout << "White side is the WINNER!" << endl;
-        } else {
           cout << "Black side is the WINNER!" << endl;
+        } else {
+          cout << "White side is the WINNER!" << endl;
         }
         return;
       }
@@ -813,6 +807,7 @@ bool chessPlayer::canCastle(int king, int rook) {
   return true;
 }
 
+//This function does the castling, involving king and rook piece.
 void chessPlayer::performCastling(int king, int rook) {
   bool right = false, left = false;
   // check which side of the king the rook is on
@@ -850,6 +845,7 @@ void chessPlayer::performCastling(int king, int rook) {
   }
 }
 
+//This function checks whether king is under check.
 bool chessPlayer::King_Under_Check() {
   char kingClr, opponentClr;
 
@@ -899,6 +895,7 @@ bool chessPlayer::King_Under_Check() {
   return false;
 }
 
+//This functions is for checking whether king will be under check when moved.
 bool chessPlayer::king_can_be_in_check(int from, int to) {
   // Initially, we saved the board pieces information before making changes
   Piece temp1 = board[from];
