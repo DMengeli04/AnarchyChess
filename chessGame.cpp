@@ -301,11 +301,11 @@ std::vector<Piece> generate_board(std::string mode) {
 // Constructor
 chessPlayer::chessPlayer() {
   std::string mode;
-  cout << "What game mode would you like?\nstandard\nanarchy\npawn\nrook\nbishop\nknight\nqueen"
-       << endl;
-
+  cout << "What game mode would you like?";
+  cout << endl;
+  cout <<"Pick: standard, anarchy, pawn, rook, bishop knight, queen (write the whole name): ";
   cin >> mode;
-
+    
   board = generate_board(mode);
   white = true;
   castle = false;
