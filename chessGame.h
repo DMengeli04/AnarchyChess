@@ -32,10 +32,11 @@ public:
   void gamePlayLoop();
   bool King_Under_Check();
   bool king_can_be_in_check(int from, int to);
-  void handlePromotion(int position);
   bool canCastle(int king, int rook);
   void performCastling(int king, int rook);
+private:
   int enPassant;
+  void handlePromotion(int position);
 };
 
 #endif
