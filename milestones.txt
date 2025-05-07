@@ -50,7 +50,7 @@ Checklist had become
 Sergio volunteered to code En Passant
 Siddh volunteered to code check and checkmate
 
-April 29 Meeting 1:30 - 2:00
+May 1 Meeting 1:30 - 2:00
 All four members present
 Checklist had become
 Optional:
@@ -90,8 +90,17 @@ Jeffrey Wiggs : )
 		bishops
 	5/5/2025 1/2 hour: Added all piece modes
 	5/6/2025 1 hour: Code cleanup
-Davyn Mengeling
 
+Davyn Mengeling
+	3/27/2025 0.5 hour: Researched chess and played practice games
+	3/28/2025 3.5 hour: Brainstormed implementation ideas and wrote function to generate the starting board
+	4/22/2025 1 hour: Helped Jeffrey with fixing the pawns (can only move double on first move)
+	4/23/2025 1 hour: Fixed additional pawn rules (can only move diagonal to capture, and can't capture on forward move)
+	4/27/2025 2 hour: Worked with Siddh on writing the prototype castling functions
+	4/30/2025 1 hour: Finished castling functions and fixed all bugs
+	5/4/2025  1 hour: Modified board.cpp to create anarchy chess!
+	5/5/2025 2 hour: streamlined board.cpp and moveValid.cpp into one file and also created a header file to store the Piece class
+	Total time: 12 hours
 
 Siddh Patel's Time Log: 
 	Total time 18.05 hours
