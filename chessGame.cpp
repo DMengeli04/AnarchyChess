@@ -539,6 +539,8 @@ void chessPlayer::handlePromotion(int position) {
 // This function makes the pieces move.
 void chessPlayer::moveMaker(int from, int to) {
 
+// if castling was able to be performed, this counts as a move
+// return castle to false, perform the castling, and skip the rest of the function
   if (castle == true) {
     castle = false;
     performCastling(from, to);
