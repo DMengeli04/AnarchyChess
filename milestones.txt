@@ -144,7 +144,11 @@ Siddh Patel's Time Log:
 
 
 Sergio Macias-Ayala
-
+	3/26/2025 1 hours: Researched chess rules and played games of chess to understand the fundamentals
+	3/28/2025 3.5 hours: created a non gui game loop file that simulated a rough chess game 
+	4/26/2025 .5 hours: researched pawn promotion rules and game functions 
+	4/27/2025 5 hours: created pawn promotion function in moveValid.cpp
+	5/1/2025 5 hours: researched and created en passants function in moveValid.cpp 
 
 User Manual
 There are two versions of the game, the command line version and the GUI version
