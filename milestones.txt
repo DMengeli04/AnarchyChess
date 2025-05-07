@@ -97,9 +97,9 @@ Davyn Mengeling
 	4/22/2025 1 hour: Helped Jeffrey with fixing the pawns (can only move double on first move)
 	4/23/2025 1 hour: Fixed additional pawn rules (can only move diagonal to capture, and can't capture on forward move)
 	4/27/2025 2 hour: Worked with Siddh on writing the prototype castling functions
-	4/30/2025 1 hour: Finished castling functions and fixed all bugs
-	5/4/2025  1 hour: Modified board.cpp to create anarchy chess!
-	5/5/2025 2 hour: streamlined board.cpp and moveValid.cpp into one file and also created a header file to store the Piece class
+	4/30/2025 1 hour: Finished castling functions and removed the bugs
+	5/4/2025  1.5 hour: Modified board.cpp to create anarchy chess!...Also fixed some other castling bugs we found
+	5/5/2025 1.5 hour: streamlined board.cpp and moveValid.cpp into one file and also created a header file to store the Piece class
 	Total time: 12 hours
 
 Siddh Patel's Time Log: 
